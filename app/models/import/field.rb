@@ -1,6 +1,7 @@
 class Import::Field
   def self.iso_date_validator(value)
-    Date.iso8601(value)
+    # Date.iso8601(value)
+    Date.strptime(value, "%d/%m/%y")
     true
   rescue
     false

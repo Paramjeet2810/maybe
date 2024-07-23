@@ -128,7 +128,8 @@ class Import < ApplicationRecord
 
         entry = account.entries.build \
           name: row["name"].presence || FALLBACK_TRANSACTION_NAME,
-          date: Date.iso8601(row["date"]),
+          # date: Date.iso8601(row["date"]),
+          date: Date.strptime(row["date"], "%d/%m/%y"),
           currency: account.currency,
           amount: BigDecimal(row["amount"]) * -1,
           entryable: Account::Transaction.new(category: category, tags: tags)
